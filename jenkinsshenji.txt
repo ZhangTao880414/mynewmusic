@@ -1,0 +1,21 @@
+docker exec -it jenkins /bin/bash
+
+find / -name jenkins.war
+
+
+cd /usr/share/jenkins
+mv jenkins.war /root/jenkins
+
+关闭Jenkins服务
+docker stop jenkins
+
+
+// docker 命令操作
+// 前面是新包的目录，后面是容器的目录 jenkins为容器名称，以下命令都在宿主机执行
+docker cp /data/jenkins.war jenkins:/usr/share/jenkins
+
+// systemctl命令操作
+mv /data/jenkins.war /usr/lib/jenkins/
+
+重启jenkins
+docker start jenkins
